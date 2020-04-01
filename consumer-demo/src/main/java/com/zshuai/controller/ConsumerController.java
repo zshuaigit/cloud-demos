@@ -86,6 +86,8 @@ public class ConsumerController {
     UserClient userCliennt;
     @GetMapping("/{id}")
     public User queryBuId(@PathVariable("id") Long id){
+
+        System.out.println("分支上的增加");
         return userCliennt.queryById(id);
     }
 
