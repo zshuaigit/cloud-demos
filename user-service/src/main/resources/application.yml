@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/springmvc
+    username: root
+    password: rootzs
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 10
+mybatis:
+  type-aliases-package: com.zshuai.userservice.pojo
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:20000/eureka
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true # 当其它服务获取地址时提供ip而不是hostname
+    ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找
+    # lease-renewal-interval-in-seconds：服务续约(renew)的间隔，默认为30秒
+    # lease-expiration-duration-in-seconds：服务失效时间，默认值90秒
+    lease-expiration-duration-in-seconds: 10 # 10秒即过期
+    lease-renewal-interval-in-seconds: 5 # 5秒一次心跳
